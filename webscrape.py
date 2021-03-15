@@ -42,32 +42,52 @@ def get_champ_video_hrefs(href):
     soup = bs(r.content, features="html.parser")
 
     #gets all the sources tags with type: video/mp4
-    source_tags = soup.find_all('source', attrs={"type": "video/mp4"})
+    mp4_tags = soup.find_all('source', attrs={"type": "video/mp4"})
 
     mp4_links = []
 
     #sorts all mp4 links into a list 
-    for source in source_tags:
-        mp4_links.append(source['src'])
+    for mp4 in mp4_tags:
+        mp4_links.append(mp4['src'])
+    
+    #gets all the sources tags with type: video/webm
+    webm_tags = soup.find_all('source', attrs={"type": "video/webm"})
 
-    # print(mp4_links)
+    webm_links = []
 
-    add_to_champ_video_hrefs(champ_name, mp4_links)
+    #sorts all the sources tags with type: video/webm
+    for webm in webm_tags:
+        webm_links.append(webm['src'])
 
-def add_to_champ_video_hrefs(champ_name, mp4_links):
-    """ adds champion name to champ_video_hrefs along with their passive and QWER abilites plus their respective hrefs"""
-    abilities = {}
+    add_to_champ_video_hrefs(champ_name, mp4_links, webm_links)
+
+def add_to_champ_video_hrefs(champ_name, mp4_links, webm_links):
+    """ adds champion name to champ_video_hrefs in which is a dictionary with links to mp4 and webm videos of each ability"""
+    wrapper_dict = {}
+    
+    mp4_abilites  = {}
+
+    webm_abilities = {}
 
     for link in mp4_links: 
-        abilities[link[-6]] = link
+        mp4_abilites[link[-6]] = link
 
-    champ_video_hrefs[champ_name] = abilities
+    for link in webm_links: 
+        webm_abilities[link[-7]] = link
 
+    wrapper_dict['mp4'] = mp4_abilites
 
-href_list = get_champ_hrefs()
+    wrapper_dict['webm'] = webm_abilities
 
-for href in href_list:
-    get_champ_video_hrefs(href)
+    champ_video_hrefs[champ_name] = wrapper_dict
+
+def build_champ_video_links():
+    href_list = get_champ_hrefs()
+
+    for href in href_list:
+        get_champ_video_hrefs(href)
+
+    return champ_video_hrefs
 
 print(champ_video_hrefs)
 
