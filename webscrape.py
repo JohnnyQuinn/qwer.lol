@@ -1,6 +1,9 @@
 import requests
 import re
 from bs4 import BeautifulSoup as bs
+import pprint
+
+pp = pprint.PrettyPrinter(indent=4)
 
 # dictionary to be filled with champions and their abilities' demo video links 
 champ_video_hrefs = {}
@@ -19,6 +22,8 @@ def get_champ_hrefs():
 
     for champ in champ_links:
         href_list.append(champ['href'])
+
+    return href_list
 
 def get_champ_video_hrefs(href):
     """ parses through each champions info page, gets their ability video demo links and
@@ -45,15 +50,25 @@ def get_champ_video_hrefs(href):
     for source in source_tags:
         mp4_links.append(source['src'])
 
-    print(mp4_links)
+    # print(mp4_links)
 
-def add_to_champ_video_hrefs(mp4_links):
-    for link in mp4_links:
-        if link[-6] == 'P': 
+    add_to_champ_video_hrefs(champ_name, mp4_links)
+
+def add_to_champ_video_hrefs(champ_name, mp4_links):
+    """ adds champion name to champ_video_hrefs along with their passive and QWER abilites plus their respective hrefs"""
+    abilities = {}
+
+    for link in mp4_links: 
+        abilities[link[-6]] = link
+
+    champ_video_hrefs[champ_name] = abilities
 
 
+href_list = get_champ_hrefs()
 
+for href in href_list:
+    get_champ_video_hrefs(href)
 
+print(champ_video_hrefs)
 
-
-get_champ_video_hrefs('/en-us/champions/leona/')
+pp.pprint(champ_video_hrefs)
