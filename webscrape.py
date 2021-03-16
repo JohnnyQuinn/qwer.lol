@@ -1,9 +1,13 @@
 import requests
-import re
 from bs4 import BeautifulSoup as bs
 import pprint
+import json
+import os 
 
 pp = pprint.PrettyPrinter(indent=4)
+
+#gets current directory's file path
+dir_path = os.path.dirname(os.path.realpath(__file__))
 
 # dictionary to be filled with champions and their abilities' demo video links 
 champ_video_hrefs = {}
@@ -81,7 +85,10 @@ def add_to_champ_video_hrefs(champ_name, mp4_links, webm_links):
 
     champ_video_hrefs[champ_name] = wrapper_dict
 
-def build_champ_video_links():
+def build_champ_video_hrefs():
+    """ calls get_champ_hrefs() to first build list of champion info page hrefs 
+        then calles get_champ_video_hrefs() to webscrape each champion page for mp4 and webm video hrefs 
+    """
     href_list = get_champ_hrefs()
 
     for href in href_list:
@@ -89,6 +96,10 @@ def build_champ_video_links():
 
     return champ_video_hrefs
 
-print(champ_video_hrefs)
+hrefs = build_champ_video_hrefs()
 
-pp.pprint(champ_video_hrefs)
+pp.pprint(hrefs)
+
+#writes dictionary of all champions videos hrefs to json file 
+with open(dir_path + '/data.json', 'w') as outfile:
+    json.dump(hrefs, outfile, indent = 4)
