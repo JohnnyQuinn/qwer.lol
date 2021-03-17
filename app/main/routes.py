@@ -1,7 +1,14 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash
 from app import app 
+import json
+import os
 
-main = Blueprint("app", __name__)
+main = Blueprint("main", __name__)
+
+dir_path = os.path.dirname(os.path.realpath(__file__))
+
+with open('/Users/johnnyquinn/dev/code/qwer.lol/data.json') as data:
+  champ_video_hrefs = json.load(data)
 
 @main.route('/')
 def homepage():
@@ -14,9 +21,10 @@ def search():
 
     print(f'-------------------------------------------------------------------search: {champ_query}')
 
-    return redirect(url_for('app.champ', champ=champ_query))
+    return redirect(url_for('main.champ', champ=champ_query))
 
 @main.route('/champ/<champ>')
 def champ(champ):
-    
+    print(champ_video_hrefs)
+
     return render_template('champ.html')

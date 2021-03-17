@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% include 'navbar_search.html' %}
+
+<div class="container position-absolute top-50 start-50 translate-middle">
+    <div class="row mx-auto">
+        <div class="col-2"></div>
+        <div class="card col-8">
+            <div class="card-body p-5">
+                <h1 class="card-title mb-5 display-4">{{ champ_name }}
+                    <small class="text-muted">{{ champ_role }}</small>
+                </h1>
+                <div class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <video src="{{ champ_p_mp4 }}"></video>
+                        </div>
+                        <div class="carousel-item">
+                            <video src="{{ champ_q_mp4 }}"></video>
+                        </div>
+                        <div class="carousel-item">
+                            <video src="{{ champ_w_mp4 }}"></video>
+                        </div>
+                        <div class="carousel-item">
+                            <video src="{{ champ_e_mp4 }}"></video>
+                        </div>
+                        <div class="carousel-item">
+                            <video src="{{ champ_r_mp4 }}"></video>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-slide-to="1" class="active" aria-current="true" aria-label="Slide 2"></button>
+                <button type="button" data-bs-slide-to="2" class="active" aria-current="true" aria-label="Slide 3"></button>
+                <button type="button" data-bs-slide-to="3" class="active" aria-current="true" aria-label="Slide 4"></button>
+                <button type="button" data-bs-slide-to="4" class="active" aria-current="true" aria-label="Slide 5"></button>
+            </div>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+{% endblock %}
