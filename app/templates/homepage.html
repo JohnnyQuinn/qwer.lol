@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% include 'navbar_blank.html' %}
 
 <div class="container position-absolute top-50 start-50 translate-middle">
     <div class="row mx-auto">
@@ -8,10 +9,7 @@
         <div class="card col-8">
             <div class="card-body p-5">
                 <h1 class="card-title mb-5 display-4">Search for a League of Legends Champion and see their abilites</h1>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                {% include 'search.html' %}
             </div>
         </div>
         <div class="col-2"></div>
