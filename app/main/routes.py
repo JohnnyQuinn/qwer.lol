@@ -53,7 +53,11 @@ def champ(champ):
         'champ_w_mp4': champ_video_hrefs[champ.lower()]['mp4']['W'],
         'champ_e_mp4': champ_video_hrefs[champ.lower()]['mp4']['E'],
         'champ_r_mp4': champ_video_hrefs[champ.lower()]['mp4']['R'],
-        'champ_q_tooltip': result_json['spells'][0]['tooltip']
+        'champ_p_tooltip': result_json['passive']['description'],
+        'champ_q_tooltip': result_json['spells'][0]['tooltip'],
+        'champ_w_tooltip': result_json['spells'][1]['tooltip'],
+        'champ_e_tooltip': result_json['spells'][2]['tooltip'],
+        'champ_r_tooltip': result_json['spells'][3]['tooltip'],
     }
 
     

@@ -1,5 +1,10 @@
+
+
 video {
     width:100%;
-    padding-left: 100px; 
-    padding-right: 100px;
+}
+
+.carousel-item {
+    border-radius: 50%;
+    overflow: hiddenl;
 }

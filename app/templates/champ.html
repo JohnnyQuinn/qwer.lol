@@ -4,29 +4,32 @@
 
 {% include 'navbar_search.html' %}
 
-<div class="container">
-    <div class="row mx-auto">
-        <div class="col-1"></div>
-        <div class="card col-10">
-            <div class="card-body">
-                <h1 class="card-title display-5 text-center">{{ name }} <small class="text-muted fs-3">{{ roles }}</small>
+<div class="container my-5">
+        <div class="card">
+            <div class="card-body w-75 mx-auto">
+                <h1 class="card-title display-5 text-start">{{ name }} <small class="text-muted fs-3">{{ roles }}</small>
                 </h1>
                 <div id="abilityVideoCarousel" class="carousel slide carousel-fade">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <video src="{{ champ_p_mp4 }}" autoplay loop muted></video>
+                            <p>{{ champ_p_tooltip }}</p>
                         </div>
                         <div class="carousel-item">
                             <video src="{{ champ_q_mp4 }}" autoplay loop muted></video>
+                            <p>{{ champ_q_tooltip }}</p>    
                         </div>
                         <div class="carousel-item">
                             <video src="{{ champ_w_mp4 }}" autoplay loop muted></video>
+                            <p>{{ champ_w_tooltip }}</p>
                         </div>
                         <div class="carousel-item">
                             <video src="{{ champ_e_mp4 }}" autoplay loop muted></video>
+                            <p>{{ champ_e_tooltip }}</p>
                         </div>
                         <div class="carousel-item">
                             <video src="{{ champ_r_mp4 }}" autoplay loop muted></video>
+                            <p>{{ champ_r_tooltip }}</p>
                         </div>
                     </div>
                 </div>
@@ -38,11 +41,9 @@
                     <button type="button" data-bs-target="#abilityVideoCarousel" data-bs-slide-to="4" aria-label="Slide 5">R</button>
                 </div>
                 <div class="container">
-                    <p>{{ champ_q_tooltip }}</p>
+
                 </div>
             </div>
         </div>
-        <div class="col-1"></div>
-    </div>
 </div>
 {% endblock %}
