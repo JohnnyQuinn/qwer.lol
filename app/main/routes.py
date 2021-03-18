@@ -41,7 +41,7 @@ def champ(champ):
         single_string = ''
         for tag in result_json['tags']:
             single_string += tag + ', '
-        roles = single_string
+        roles = single_string[:-2]
     else: 
         roles = result_json['tags'][0]
 
@@ -52,7 +52,8 @@ def champ(champ):
         'champ_q_mp4': champ_video_hrefs[champ.lower()]['mp4']['Q'],
         'champ_w_mp4': champ_video_hrefs[champ.lower()]['mp4']['W'],
         'champ_e_mp4': champ_video_hrefs[champ.lower()]['mp4']['E'],
-        'champ_r_mp4': champ_video_hrefs[champ.lower()]['mp4']['R']
+        'champ_r_mp4': champ_video_hrefs[champ.lower()]['mp4']['R'],
+        'champ_q_tooltip': result_json['spells'][0]['tooltip']
     }
 
     
