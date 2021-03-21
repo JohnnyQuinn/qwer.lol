@@ -1,10 +1,12 @@
 video {
     width:100%;
+    height: 100%;
 }
 
 /* Add border radius to carousel item once JS is implemented for ability tooltips  */
 
 .carousel-item {
-    /* border-radius: 50%;
-    overflow: hidden; */
+    border-radius: 1%;
+    overflow: hidden;
+    padding: 0px;
 }

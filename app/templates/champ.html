@@ -12,38 +12,38 @@
                 <div id="abilityVideoCarousel" class="carousel slide carousel-fade">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <video src="{{ champ_p_mp4 }}" autoplay loop muted></video>
-                            <p>{{ champ_p_tooltip }}</p>
+                            <video id="p_vid" src="{{ champ_p_mp4 }}" autoplay loop muted></video>
                         </div>
                         <div class="carousel-item">
-                            <video src="{{ champ_q_mp4 }}" autoplay loop muted></video>
-                            <p>{{ champ_q_tooltip }}</p>    
+                            <video id="q_vid" src="{{ champ_q_mp4 }}" loop muted></video>
                         </div>
                         <div class="carousel-item">
-                            <video src="{{ champ_w_mp4 }}" autoplay loop muted></video>
-                            <p>{{ champ_w_tooltip }}</p>
+                            <video id="w_vid" src="{{ champ_w_mp4 }}" loop muted></video>
                         </div>
                         <div class="carousel-item">
-                            <video src="{{ champ_e_mp4 }}" autoplay loop muted></video>
-                            <p>{{ champ_e_tooltip }}</p>
+                            <video id="e_vid" src="{{ champ_e_mp4 }}" loop muted></video>
                         </div>
                         <div class="carousel-item">
-                            <video src="{{ champ_r_mp4 }}" autoplay loop muted></video>
-                            <p>{{ champ_r_tooltip }}</p>
+                            <video id="r_vid" src="{{ champ_r_mp4 }}" loop muted></video>
                         </div>
                     </div>
                 </div>
-                <div class="container d-flex justify-content-evenly px-5">
-                    <button type="button" data-bs-target="#abilityVideoCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">passive</button>
-                    <button type="button" data-bs-target="#abilityVideoCarousel" data-bs-slide-to="1" aria-label="Slide 2">Q</button>
-                    <button type="button" data-bs-target="#abilityVideoCarousel" data-bs-slide-to="2" aria-label="Slide 3">W</button>
-                    <button type="button" data-bs-target="#abilityVideoCarousel" data-bs-slide-to="3" aria-label="Slide 4">E</button>
-                    <button type="button" data-bs-target="#abilityVideoCarousel" data-bs-slide-to="4" aria-label="Slide 5">R</button>
+                <div class="container d-flex justify-content-evenly px-5 mt-3">
+                    <button id="p_button" type="button" data-bs-target="#abilityVideoCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">passive</button>
+                    <button id="q_button" type="button" data-bs-target="#abilityVideoCarousel" data-bs-slide-to="1" aria-label="Slide 2">Q</button>
+                    <button id="w_button" type="button" data-bs-target="#abilityVideoCarousel" data-bs-slide-to="2" aria-label="Slide 3">W</button>
+                    <button id="e_button" type="button" data-bs-target="#abilityVideoCarousel" data-bs-slide-to="3" aria-label="Slide 4">E</button>
+                    <button id="r_button" type="button" data-bs-target="#abilityVideoCarousel" data-bs-slide-to="4" aria-label="Slide 5">R</button>
                 </div>
-                <div class="container">
-
+                <div class="container mt-3" id="tooltip-container">
+                    <p id="p_tooltip">{{ champ_p_tooltip }}</p>
+                    <p id="q_tooltip" hidden>{{ champ_q_tooltip }}</p>    
+                    <p id="w_tooltip" hidden>{{ champ_w_tooltip }}</p>
+                    <p id="e_tooltip" hidden>{{ champ_e_tooltip }}</p>
+                    <p id="r_tooltip" hidden>{{ champ_r_tooltip }}</p>
                 </div>
             </div>
         </div>
 </div>
+<script src="../static/script.js"></script>
 {% endblock %}

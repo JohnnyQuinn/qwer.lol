@@ -12,13 +12,34 @@ main = Blueprint("main", __name__)
 with open('./data.json') as data:
   champ_video_hrefs = json.load(data)
 
+def handle_request(extension): 
+    """ handles requests to Riot API """
+
+    url = 'http://ddragon.leagueoflegends.com/cdn/11.6.1/data/en_US/'
+
+    url += extension + '.json'
+
+    params = {
+        'X-Riot-Token': 'RGAPI-939795eb-3003-4d13-9b85-693dc223cd08'
+    }
+
+    result_json = requests.get(url, params=params).json()
+    result_json = result_json['data']
+
+    return result_json
+
+champ_list = handle_request('champion')
+
 @main.route('/')
 def homepage():
+    """ serves homepage.html """
     
     return render_template('homepage.html')
 
 @main.route('/search', methods=['GET'])
 def search():
+    """ handles search querys inputted into searchbar"""
+
     champ_query = request.args.get('champ_query')
 
     print(f'-------------------------------------------------------------------search: {champ_query}')
@@ -27,15 +48,10 @@ def search():
 
 @main.route('/champ/<champ>')
 def champ(champ):
-    
-    url = 'http://ddragon.leagueoflegends.com/cdn/11.6.1/data/en_US/champion/' + champ + '.json'
+    """ serves champ.html and handles API requests for champion """
 
-    params = {
-        'X-Riot-Token': 'RGAPI-939795eb-3003-4d13-9b85-693dc223cd08'
-    }
-
-    result_json = requests.get(url, params=params).json()
-    result_json = result_json['data'][champ]
+    result_json = handle_request('champion/' + champ)
+    result_json = result_json[champ]
 
     if len(result_json['tags']) > 1:
         single_string = ''
@@ -43,7 +59,7 @@ def champ(champ):
             single_string += tag + ', '
         roles = single_string[:-2]
     else: 
-        roles = result_json['tags'][0]
+        roles = result_json['tags'][0]  
 
     champ_data = {
         'name': result_json['name'],
