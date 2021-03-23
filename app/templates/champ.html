@@ -36,11 +36,75 @@
                     <button id="r_button" type="button" data-bs-target="#abilityVideoCarousel" data-bs-slide-to="4" aria-label="Slide 5">R</button>
                 </div>
                 <div class="container mt-3" id="tooltip-container">
-                    <p id="p_tooltip">{{ p_tooltip }}</p>
+                    <!-- <p id="p_tooltip">{{ p_tooltip }}</p>
                     <p id="q_tooltip" hidden>{{ champ_q_tooltip }}</p>    
                     <p id="w_tooltip" hidden>{{ champ_w_tooltip }}</p>
                     <p id="e_tooltip" hidden>{{ champ_e_tooltip }}</p>
-                    <p id="r_tooltip" hidden>{{ champ_r_tooltip }}</p>
+                    <p id="r_tooltip" hidden>{{ champ_r_tooltip }}</p> -->
+                    <div id="p_tooltip">
+                        <h6>{{ p_tooltip['name'] }}:</h6>
+                        <p> {{ p_tooltip['description']}} </p>
+                    </div>
+                    <div id="q_tooltip" hidden>
+                        <h6>{{ q_tooltip['name'] }}</h6>
+                        <p>
+                            {% for element in q_tooltip['description_list'] %}
+                                {% if element is mapping %}
+                                    {% for key, value in element.items() %}
+                                    <span class="{{key}}">{{value}}</span>
+                                    {% endfor %}
+                                {% endif %}
+                                {% if element is string %}
+                                    {{ element }}
+                                {% endif %}
+                            {% endfor %}
+                        </p>
+                    </div>
+                    <div id="w_tooltip" hidden>
+                        <h6>{{ w_tooltip['name'] }}</h6>
+                        <p>
+                            {% for element in w_tooltip['description_list'] %}
+                                {% if element is mapping %}
+                                    {% for key, value in element.items() %}
+                                    <span class="{{key}}">{{value}}</span>
+                                    {% endfor %}
+                                {% endif %}
+                                {% if element is string %}
+                                    {{ element }}
+                                {% endif %}
+                            {% endfor %}
+                        </p>
+                    </div>
+                    <div id="e_tooltip" hidden>
+                        <h6>{{ e_tooltip['name'] }}</h6>
+                        <p>
+                            {% for element in e_tooltip['description_list'] %}
+                                {% if element is mapping %}
+                                    {% for key, value in element.items() %}
+                                    <span class="{{key}}">{{value}}</span>
+                                    {% endfor %}
+                                {% endif %}
+                                {% if element is string %}
+                                    {{ element }}
+                                {% endif %}
+                            {% endfor %}
+                        </p>
+                    </div>
+                    <div id="r_tooltip" hidden>
+                        <h6>{{ r_tooltip['name'] }}</h6>
+                        <p>
+                            {% for element in r_tooltip['description_list'] %}
+                                {% if element is mapping %}
+                                    {% for key, value in element.items() %}
+                                    <span class="{{key}}">{{value}}</span>
+                                    {% endfor %}
+                                {% endif %}
+                                {% if element is string %}
+                                    {{ element }}
+                                {% endif %}
+                            {% endfor %}
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>

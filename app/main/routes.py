@@ -140,12 +140,14 @@ def champ(champ):
     #interpret tooltips for frontend  
     p_tooltip = { 
         'name': result_json['passive']['name'],
-        'passive_description': result_json['passive']['description']
+        'description': result_json['passive']['description']
     }
     q_tooltip = interpret_tooltips(result_json['spells'][0])
     w_tooltip = interpret_tooltips(result_json['spells'][1])
     e_tooltip = interpret_tooltips(result_json['spells'][2])
     r_tooltip = interpret_tooltips(result_json['spells'][3])
+
+    pp.pprint(q_tooltip)
 
     champ_data = {
         'name': result_json['name'],
