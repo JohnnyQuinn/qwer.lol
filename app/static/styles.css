@@ -21,10 +21,33 @@ video {
     height: 100%;
     border-radius: 10%;
     font-size: larger;
-    /* background-color: #2E71B0; */
-    /* color: white; */
 }
 
 #tooltip-container > div > p {
     font-size: larger;
+}
+
+.magicDamage {
+    color: blue;
+    font-weight: bold;
+}
+
+.trueDamage {
+    color: purple;
+    font-weight: bold;
+}
+
+.speed {
+    color: green;
+    font-weight: bold;
+}
+
+.status {
+    color: darkgoldenrod;
+    font-weight: bold;
+}
+
+.recast {
+    color: red;
+    font-weight: bold;
 }

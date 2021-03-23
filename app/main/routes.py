@@ -96,10 +96,12 @@ def interpret_tooltips(spell):
         else:
             tooltip = tooltip.replace(tooltip[:6], '', 1)
             tooltip_list.append('br')
-        print(tooltip_list)
-        print(tooltip[:4])
+        # print(tooltip_list)
+        # print(tooltip[:4])
     
     print(tooltip_list)
+
+    # tooltip_list = interpret_placeholders(spell, tooltip_list)
 
     tooltip_info = {
         'name': spell['name'],
@@ -108,6 +110,20 @@ def interpret_tooltips(spell):
 
     return tooltip_info
 
+def interpret_placeholders(spell, tooltip_list):
+    """
+        #TODO: Finish this
+        replaces placeholder values in tooltip_list with actual values from API
+    """
+    new_list = tooltip_list
+
+    for element in new_list:
+        if isinstance(element, dict):
+            for key, value in element.items():
+                if 'totaldamage' in value:
+                    element
+    
+    return new_list
 
 #get a list of champions from API
 champ_list = handle_request('champion')
@@ -154,7 +170,36 @@ def champ(champ):
     e_tooltip = interpret_tooltips(result_json['spells'][2])
     r_tooltip = interpret_tooltips(result_json['spells'][3])
 
+    print(f'-------------------------------------------------------------------{champ}')
     pp.pprint(q_tooltip)
+    print('\n')
+    pp.pprint(w_tooltip)
+    print('\n')
+    pp.pprint(e_tooltip)
+    print('\n')
+    pp.pprint(r_tooltip)
+    if champ == 'Ahri':
+        q_tooltip['description_list'][1]['magicDamage'] = q_tooltip['description_list'][1]['magicDamage'].replace('{{ totaldamage }}', "40/65/90/115/140")
+        q_tooltip['description_list'][3]['trueDamage'] = q_tooltip['description_list'][3]['trueDamage'].replace('{{ totaldamage }}', "40/65/90/115/140")
+        w_tooltip['description_list'][1]['magicDamage'] = w_tooltip['description_list'][1]['magicDamage'].replace('{{ singlefiredamage }}', "40/65/90/115/140")
+        w_tooltip['description_list'][3]['magicDamage'] = w_tooltip['description_list'][3]['magicDamage'].replace('{{ multifiredamage }}', "(40/65/90/115/140) x 30%")
+        w_tooltip['description_list'][5]['speed'] = w_tooltip['description_list'][5]['speed'].replace('{{ movementspeed*100 }}', "330")
+        w_tooltip['description_list'][6] = w_tooltip['description_list'][6].replace('{{ movementspeedduration }}', "0.25")
+        e_tooltip['description_list'][2] = e_tooltip['description_list'][2].replace('{{ e2 }}', "1.4/1.55/1.7/1.85/2")
+        e_tooltip['description_list'][3]['magicDamage'] = e_tooltip['description_list'][3]['magicDamage'].replace('{{ totaldamage }}', "60/90/120/150/180")
+        e_tooltip['description_list'][4] = e_tooltip['description_list'][4].replace('{{ e4 }}', "20")
+        e_tooltip['description_list'][4] = e_tooltip['description_list'][4].replace('{{ e5 }}', "3")
+        r_tooltip['description_list'][0] = r_tooltip['description_list'][0].replace('{{ rmaxtargetspercast }}', "1")
+        r_tooltip['description_list'][1]['magicDamage'] = r_tooltip['description_list'][1]['magicDamage'].replace('{{ rcalculateddamage }}', "200")
+        r_tooltip['description_list'][4] = r_tooltip['description_list'][4].replace('{{ rrecastwindow }}', "1")
+
+
+
+
+
+
+        
+
 
     champ_data = {
         'name': result_json['name'],

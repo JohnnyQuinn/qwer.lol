@@ -1,5 +1,6 @@
 const tooltip_container = document.getElementById('tooltip-container')
 const carousel = document.getElementById('abilityVideoCarousel')
+const abilityButtonContainer = document.getElementById('abilityButtonContainer')
 
 const p_video = document.getElementById('p_vid')
 const q_video = document.getElementById('q_vid')
@@ -23,26 +24,36 @@ const r_tooltip = document.getElementById('r_tooltip')
 p_button.onclick = function(){
     hideTooltips(0);
     handleAutoplay(0);
+    p_button.style.borderColor = 'green';
+    removeBorderColor(0);
 };
 
 q_button.onclick = function(){
     hideTooltips(1);
     handleAutoplay(1);
+    removeBorderColor(1);
+    q_button.style.borderColor = 'green';
 };
 
 w_button.onclick = function(){
     hideTooltips(2);
     handleAutoplay(2);
+    w_button.style.borderColor = 'green';
+    removeBorderColor(2);
 };
 
 e_button.onclick = function(){
     hideTooltips(3);
     handleAutoplay(3);
+    e_button.style.borderColor = 'green';
+    removeBorderColor(3);
 };
 
 r_button.onclick = function(){
     hideTooltips(4);
     handleAutoplay(4);
+    r_button.style.borderColor = 'green';
+    removeBorderColor(4);
 };
 
 function hideTooltips(skip){
@@ -63,5 +74,14 @@ function handleAutoplay(skip) {
         }
         videos[i].pause();
         videos[i].currentTime = 0;
+    }
+}
+
+function removeBorderColor(skip) {
+    for (let i = 0; i < abilityButtonContainer.children.length; i++){
+        if(i === skip){
+            continue;
+        }
+        abilityButtonContainer.children[i].style.borderColor = null;
     }
 }
