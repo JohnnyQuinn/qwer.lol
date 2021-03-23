@@ -6,105 +6,105 @@
 
 <div class="container my-5">
         <div class="card">
-            <div class="card-body w-75 mx-auto">
-                <h1 class="card-title display-5 text-start">{{ name }} <small class="text-muted fs-3">{{ roles }}</small>
-                </h1>
-                <div id="abilityVideoCarousel" class="carousel slide carousel-fade">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <video id="p_vid" src="{{ p_mp4 }}" autoplay loop muted></video>
+            <div class="card-body mx-auto">
+                <div class="row">
+                    <div class="col-5">
+                        <h1 class="card-title display-5 text-start ps-4">{{ name }} <small class="text-muted fs-3">{{ roles }}</small></h1>
+                        <div id="abilityButtonContainer" class="container d-flex justify-content-evenly mt-3">
+                            <button id="p_button" type="button" data-bs-target="#abilityVideoCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">Passive</button>
+                            <button id="q_button" type="button" data-bs-target="#abilityVideoCarousel" data-bs-slide-to="1" aria-label="Slide 2">Q</button>
+                            <button id="w_button" type="button" data-bs-target="#abilityVideoCarousel" data-bs-slide-to="2" aria-label="Slide 3">W</button>
+                            <button id="e_button" type="button" data-bs-target="#abilityVideoCarousel" data-bs-slide-to="3" aria-label="Slide 4">E</button>
+                            <button id="r_button" type="button" data-bs-target="#abilityVideoCarousel" data-bs-slide-to="4" aria-label="Slide 5">R</button>
                         </div>
-                        <div class="carousel-item">
-                            <video id="q_vid" src="{{ q_mp4 }}" loop muted></video>
-                        </div>
-                        <div class="carousel-item">
-                            <video id="w_vid" src="{{ w_mp4 }}" loop muted></video>
-                        </div>
-                        <div class="carousel-item">
-                            <video id="e_vid" src="{{ e_mp4 }}" loop muted></video>
-                        </div>
-                        <div class="carousel-item">
-                            <video id="r_vid" src="{{ r_mp4 }}" loop muted></video>
-                        </div>
-                    </div>
-                </div>
-                <div class="container d-flex justify-content-evenly px-5 mt-3">
-                    <button id="p_button" type="button" data-bs-target="#abilityVideoCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">passive</button>
-                    <button id="q_button" type="button" data-bs-target="#abilityVideoCarousel" data-bs-slide-to="1" aria-label="Slide 2">Q</button>
-                    <button id="w_button" type="button" data-bs-target="#abilityVideoCarousel" data-bs-slide-to="2" aria-label="Slide 3">W</button>
-                    <button id="e_button" type="button" data-bs-target="#abilityVideoCarousel" data-bs-slide-to="3" aria-label="Slide 4">E</button>
-                    <button id="r_button" type="button" data-bs-target="#abilityVideoCarousel" data-bs-slide-to="4" aria-label="Slide 5">R</button>
-                </div>
-                <div class="container mt-3" id="tooltip-container">
-                    <!-- <p id="p_tooltip">{{ p_tooltip }}</p>
-                    <p id="q_tooltip" hidden>{{ champ_q_tooltip }}</p>    
-                    <p id="w_tooltip" hidden>{{ champ_w_tooltip }}</p>
-                    <p id="e_tooltip" hidden>{{ champ_e_tooltip }}</p>
-                    <p id="r_tooltip" hidden>{{ champ_r_tooltip }}</p> -->
-                    <div id="p_tooltip">
-                        <h6>{{ p_tooltip['name'] }}:</h6>
-                        <p> {{ p_tooltip['description']}} </p>
-                    </div>
-                    <div id="q_tooltip" hidden>
-                        <h6>{{ q_tooltip['name'] }}</h6>
-                        <p>
-                            {% for element in q_tooltip['description_list'] %}
-                                {% if element is mapping %}
-                                    {% for key, value in element.items() %}
-                                    <span class="{{key}}">{{value}}</span>
+                        <div class="container mt-3" id="tooltip-container">
+                            <div id="p_tooltip">
+                                <h6>{{ p_tooltip['name'] }}:</h6>
+                                <p> {{ p_tooltip['description']}} </p>
+                            </div>
+                            <div id="q_tooltip" hidden>
+                                <h6>{{ q_tooltip['name'] }}</h6>
+                                <p>
+                                    {% for element in q_tooltip['description_list'] %}
+                                        {% if element is mapping %}
+                                            {% for key, value in element.items() %}
+                                            <span class="{{key}}">{{value}}</span>
+                                            {% endfor %}
+                                        {% endif %}
+                                        {% if element is string %}
+                                            {{ element }}
+                                        {% endif %}
                                     {% endfor %}
-                                {% endif %}
-                                {% if element is string %}
-                                    {{ element }}
-                                {% endif %}
-                            {% endfor %}
-                        </p>
-                    </div>
-                    <div id="w_tooltip" hidden>
-                        <h6>{{ w_tooltip['name'] }}</h6>
-                        <p>
-                            {% for element in w_tooltip['description_list'] %}
-                                {% if element is mapping %}
-                                    {% for key, value in element.items() %}
-                                    <span class="{{key}}">{{value}}</span>
+                                </p>
+                            </div>
+                            <div id="w_tooltip" hidden>
+                                <h6>{{ w_tooltip['name'] }}</h6>
+                                <p>
+                                    {% for element in w_tooltip['description_list'] %}
+                                        {% if element is mapping %}
+                                            {% for key, value in element.items() %}
+                                            <span class="{{key}}">{{value}}</span>
+                                            {% endfor %}
+                                        {% endif %}
+                                        {% if element is string %}
+                                            {{ element }}
+                                        {% endif %}
                                     {% endfor %}
-                                {% endif %}
-                                {% if element is string %}
-                                    {{ element }}
-                                {% endif %}
-                            {% endfor %}
-                        </p>
-                    </div>
-                    <div id="e_tooltip" hidden>
-                        <h6>{{ e_tooltip['name'] }}</h6>
-                        <p>
-                            {% for element in e_tooltip['description_list'] %}
-                                {% if element is mapping %}
-                                    {% for key, value in element.items() %}
-                                    <span class="{{key}}">{{value}}</span>
+                                </p>
+                            </div>
+                            <div id="e_tooltip" hidden>
+                                <h6>{{ e_tooltip['name'] }}</h6>
+                                <p>
+                                    {% for element in e_tooltip['description_list'] %}
+                                        {% if element is mapping %}
+                                            {% for key, value in element.items() %}
+                                            <span class="{{key}}">{{value}}</span>
+                                            {% endfor %}
+                                        {% endif %}
+                                        {% if element is string %}
+                                            {{ element }}
+                                        {% endif %}
                                     {% endfor %}
-                                {% endif %}
-                                {% if element is string %}
-                                    {{ element }}
-                                {% endif %}
-                            {% endfor %}
-                        </p>
-                    </div>
-                    <div id="r_tooltip" hidden>
-                        <h6>{{ r_tooltip['name'] }}</h6>
-                        <p>
-                            {% for element in r_tooltip['description_list'] %}
-                                {% if element is mapping %}
-                                    {% for key, value in element.items() %}
-                                    <span class="{{key}}">{{value}}</span>
+                                </p>
+                            </div>
+                            <div id="r_tooltip" hidden>
+                                <h6>{{ r_tooltip['name'] }}</h6>
+                                <p>
+                                    {% for element in r_tooltip['description_list'] %}
+                                        {% if element is mapping %}
+                                            {% for key, value in element.items() %}
+                                            <span class="{{key}}">{{value}}</span>
+                                            {% endfor %}
+                                        {% endif %}
+                                        {% if element is string %}
+                                            {{ element }}
+                                        {% endif %}
                                     {% endfor %}
-                                {% endif %}
-                                {% if element is string %}
-                                    {{ element }}
-                                {% endif %}
-                            {% endfor %}
-                        </p>
+                                </p>
+                            </div>
+                        </div>
                     </div>
+                    <div class="col-7">
+                        <div id="abilityVideoCarousel" class="carousel slide carousel-fade">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active d-flex justify-content-center">
+                                    <video id="p_vid" src="{{ p_mp4 }}" autoplay loop muted></video>
+                                </div>
+                                <div class="carousel-item d-flex justify-content-center">
+                                    <video id="q_vid" src="{{ q_mp4 }}" loop muted></video>
+                                </div>
+                                <div class="carousel-item d-flex justify-content-center">
+                                    <video id="w_vid" src="{{ w_mp4 }}" loop muted></video>
+                                </div>
+                                <div class="carousel-item d-flex justify-content-center">
+                                    <video id="e_vid" src="{{ e_mp4 }}" loop muted></video>
+                                </div>
+                                <div class="carousel-item d-flex justify-content-center">
+                                    <video id="r_vid" src="{{ r_mp4 }}" loop muted></video>
+                                </div>
+                            </div>
+                        </div>
+                    </div>    
                 </div>
             </div>
         </div>
