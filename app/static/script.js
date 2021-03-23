@@ -23,31 +23,26 @@ const r_tooltip = document.getElementById('r_tooltip')
 p_button.onclick = function(){
     hideTooltips(0);
     handleAutoplay(0);
-//     p_tooltip.hidden = false;
 };
 
 q_button.onclick = function(){
     hideTooltips(1);
     handleAutoplay(1);
-    // q_tooltip.hidden = false;
 };
 
 w_button.onclick = function(){
     hideTooltips(2);
     handleAutoplay(2);
-    // w_tooltip.hidden = false;
 };
 
 e_button.onclick = function(){
     hideTooltips(3);
     handleAutoplay(3);
-    // e_tooltip.hidden = false;
 };
 
 r_button.onclick = function(){
     hideTooltips(4);
     handleAutoplay(4);
-    // r_tooltip.hidden = false;
 };
 
 function hideTooltips(skip){

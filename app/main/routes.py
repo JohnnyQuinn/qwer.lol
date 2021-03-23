@@ -28,6 +28,81 @@ def handle_request(extension):
 
     return result_json
 
+def interpret_tooltips(spell):
+    """
+        separates the tooltip (spell description) string given by the API into two parts:
+            - regular strings 
+            - dictionaries for custom tags and what between them (eg. '<spellPassive>Passive:</spellPassive>' gets converted into '{ 'spellPassive': 'Passive:'}')
+        and puts them in order in tooltip_list
+    """
+    tooltip = spell['tooltip']
+
+    tags = [
+        'magicDamage',
+        'physicalDamage',
+        'trueDamage',
+        'attackSpeed',
+        'spellPassive',
+        'spellActive',
+        'spellName',
+        'scaleArmor',
+        'scaleMR',
+        'scaleAD',
+        'status',
+        'shield',
+        'healing',
+        'speed',
+        'charge',
+        'release',
+        'recast',
+        'keywordMajor',
+        'keywordStealth'
+    ]
+
+    tooltip_list = []
+
+    print ('=----------------------------------------')
+
+    print(f'tooltip start len: {len(tooltip)}')
+    print(f'original tooltip: {tooltip}')
+    
+    while len(tooltip) > 0:
+        # if the start of tooltip isn't a tag
+        if tooltip[0] != '<':
+            if '<' in tooltip:
+                string = tooltip[:tooltip.index('<')]
+                tooltip_list.append(string)
+                tooltip = tooltip.replace(string, '')
+            else:
+                tooltip_list.append(tooltip)
+                tooltip = ''
+        #if the start of tooltip isnt a line break (<br />)
+        elif tooltip[:6] != '<br />':
+            for tag in tags:
+                if f'<{tag}' in tooltip[:tooltip.index('>')]:
+                    tooltip = tooltip.replace(f'<{tag}>', '', 1)
+                    tag_dict = {
+                        tag: tooltip[:tooltip.index('<')]
+                    }
+                    tooltip = tooltip.replace(tooltip[:tooltip.index('>')+1], '', 1)
+                    tooltip_list.append(tag_dict)
+                    break
+        #if the start of tooltip is a line break (<br />)
+        else:
+            tooltip = tooltip.replace(tooltip[:12], '', 1)
+            tooltip_list.append('br')
+    
+    print(tooltip_list)
+
+    tooltip_info = {
+        'name': spell['name'],
+        'description_list': tooltip_list
+    }
+
+    return tooltip_info
+
+
+#get a list of champions from API
 champ_list = handle_request('champion')
 
 @main.route('/')
@@ -53,28 +128,38 @@ def champ(champ):
     result_json = handle_request('champion/' + champ)
     result_json = result_json[champ]
 
+    #interpet roles for frontend
     if len(result_json['tags']) > 1:
         single_string = ''
         for tag in result_json['tags']:
             single_string += tag + ', '
         roles = single_string[:-2]
     else: 
-        roles = result_json['tags'][0]  
+        roles = result_json['tags'][0] 
+
+    #interpret tooltips for frontend  
+    p_tooltip = { 
+        'name': result_json['passive']['name'],
+        'passive_description': result_json['passive']['description']
+    }
+    q_tooltip = interpret_tooltips(result_json['spells'][0])
+    w_tooltip = interpret_tooltips(result_json['spells'][1])
+    e_tooltip = interpret_tooltips(result_json['spells'][2])
+    r_tooltip = interpret_tooltips(result_json['spells'][3])
 
     champ_data = {
         'name': result_json['name'],
         'roles': roles, 
-        'champ_p_mp4': champ_video_hrefs[champ.lower()]['mp4']['P'],
-        'champ_q_mp4': champ_video_hrefs[champ.lower()]['mp4']['Q'],
-        'champ_w_mp4': champ_video_hrefs[champ.lower()]['mp4']['W'],
-        'champ_e_mp4': champ_video_hrefs[champ.lower()]['mp4']['E'],
-        'champ_r_mp4': champ_video_hrefs[champ.lower()]['mp4']['R'],
-        'champ_p_tooltip': result_json['passive']['description'],
-        'champ_q_tooltip': result_json['spells'][0]['tooltip'],
-        'champ_w_tooltip': result_json['spells'][1]['tooltip'],
-        'champ_e_tooltip': result_json['spells'][2]['tooltip'],
-        'champ_r_tooltip': result_json['spells'][3]['tooltip'],
+        'p_mp4': champ_video_hrefs[champ.lower()]['mp4']['P'],
+        'q_mp4': champ_video_hrefs[champ.lower()]['mp4']['Q'],
+        'w_mp4': champ_video_hrefs[champ.lower()]['mp4']['W'],
+        'e_mp4': champ_video_hrefs[champ.lower()]['mp4']['E'],
+        'r_mp4': champ_video_hrefs[champ.lower()]['mp4']['R'],
+        'p_tooltip': p_tooltip,
+        'q_tooltip': q_tooltip,
+        'w_tooltip': w_tooltip,
+        'e_tooltip': e_tooltip,
+        'r_tooltip': r_tooltip,
     }
 
-    
     return render_template('champ.html', **champ_data)

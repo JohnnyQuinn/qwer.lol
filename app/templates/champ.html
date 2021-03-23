@@ -12,19 +12,19 @@
                 <div id="abilityVideoCarousel" class="carousel slide carousel-fade">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <video id="p_vid" src="{{ champ_p_mp4 }}" autoplay loop muted></video>
+                            <video id="p_vid" src="{{ p_mp4 }}" autoplay loop muted></video>
                         </div>
                         <div class="carousel-item">
-                            <video id="q_vid" src="{{ champ_q_mp4 }}" loop muted></video>
+                            <video id="q_vid" src="{{ q_mp4 }}" loop muted></video>
                         </div>
                         <div class="carousel-item">
-                            <video id="w_vid" src="{{ champ_w_mp4 }}" loop muted></video>
+                            <video id="w_vid" src="{{ w_mp4 }}" loop muted></video>
                         </div>
                         <div class="carousel-item">
-                            <video id="e_vid" src="{{ champ_e_mp4 }}" loop muted></video>
+                            <video id="e_vid" src="{{ e_mp4 }}" loop muted></video>
                         </div>
                         <div class="carousel-item">
-                            <video id="r_vid" src="{{ champ_r_mp4 }}" loop muted></video>
+                            <video id="r_vid" src="{{ r_mp4 }}" loop muted></video>
                         </div>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
                     <button id="r_button" type="button" data-bs-target="#abilityVideoCarousel" data-bs-slide-to="4" aria-label="Slide 5">R</button>
                 </div>
                 <div class="container mt-3" id="tooltip-container">
-                    <p id="p_tooltip">{{ champ_p_tooltip }}</p>
+                    <p id="p_tooltip">{{ p_tooltip }}</p>
                     <p id="q_tooltip" hidden>{{ champ_q_tooltip }}</p>    
                     <p id="w_tooltip" hidden>{{ champ_w_tooltip }}</p>
                     <p id="e_tooltip" hidden>{{ champ_e_tooltip }}</p>
