@@ -48,6 +48,7 @@ def interpret_tooltips(spell):
         'scaleArmor',
         'scaleMR',
         'scaleAD',
+        'scaleMana',
         'status',
         'shield',
         'healing',
@@ -62,6 +63,7 @@ def interpret_tooltips(spell):
     tooltip_list = []
 
     print ('=----------------------------------------')
+    print(f'Ability name: {spell["name"]}')
 
     print(f'tooltip start len: {len(tooltip)}')
     print(f'original tooltip: {tooltip}')
@@ -87,10 +89,15 @@ def interpret_tooltips(spell):
                     tooltip = tooltip.replace(tooltip[:tooltip.index('>')+1], '', 1)
                     tooltip_list.append(tag_dict)
                     break
+        elif tooltip[:4] == '<li>':
+            tooltip = tooltip.replace(tooltip[:4], '', 1)
+            tooltip_list.append('li')
         #if the start of tooltip is a line break (<br />)
         else:
-            tooltip = tooltip.replace(tooltip[:12], '', 1)
+            tooltip = tooltip.replace(tooltip[:6], '', 1)
             tooltip_list.append('br')
+        print(tooltip_list)
+        print(tooltip[:4])
     
     print(tooltip_list)
 
