@@ -17,7 +17,14 @@ video {
 }
 
 #abilityButtonContainer > button {
-    width: 15%;
+    width: 17%;
     height: 100%;
     border-radius: 10%;
+    font-size: larger;
+    /* background-color: #2E71B0; */
+    /* color: white; */
+}
+
+#tooltip-container > div > p {
+    font-size: larger;
 }
