@@ -192,13 +192,30 @@ def champ(champ):
         r_tooltip['description_list'][0] = r_tooltip['description_list'][0].replace('{{ rmaxtargetspercast }}', "1")
         r_tooltip['description_list'][1]['magicDamage'] = r_tooltip['description_list'][1]['magicDamage'].replace('{{ rcalculateddamage }}', "200")
         r_tooltip['description_list'][4] = r_tooltip['description_list'][4].replace('{{ rrecastwindow }}', "1")
+    
+    if champ == 'Fizz':
+        q_tooltip['description_list'][1]['physicalDamage'] = q_tooltip['description_list'][1]['physicalDamage'].replace('{{ totaldamage }}', '58')
+        q_tooltip['description_list'][3]['magicDamage'] = q_tooltip['description_list'][3]['magicDamage'].replace('{{ qdamage }}', '10/25/40/55/70')
+        w_tooltip['description_list'][2]['magicDamage'] = w_tooltip['description_list'][2]['magicDamage'].replace('{{ dotdamage }}', '40')
+        w_tooltip['description_list'][3] = w_tooltip['description_list'][3].replace('{{ bleedduration }}', '2')
+        w_tooltip['description_list'][4] = w_tooltip['description_list'][4].replace('br', '\n')
+        w_tooltip['description_list'][5] = w_tooltip['description_list'][5].replace('br', '\n')
+        w_tooltip['description_list'][8]['magicDamage'] = w_tooltip['description_list'][8]['magicDamage'].replace('{{ activedamage }}', '30/40/50/60/70')
+        w_tooltip['description_list'][10]['scaleMana'] = w_tooltip['description_list'][10]['scaleMana'].replace('{{ onkillmanarefund }}', '40')
+        w_tooltip['description_list'][11] = w_tooltip['description_list'][11].replace('{{ onkillnewcooldown }}', '1')
+        w_tooltip['description_list'][12]['magicDamage'] = w_tooltip['description_list'][12]['magicDamage'].replace('{{ onhitbuffdamage }}', '50/70/90/110/130')
+        w_tooltip['description_list'][13] = w_tooltip['description_list'][13].replace('{{ onhitbuffduration }}', '5')
+        e_tooltip['description_list'][1]['magicDamage'] = e_tooltip['description_list'][1]['magicDamage'].replace('{{ edamage }}', '70/120/170/220/270')
+        e_tooltip['description_list'][4] = e_tooltip['description_list'][4].replace('{{ e2 }}', '40/45/50/55/60')
+        e_tooltip['description_list'][4] = e_tooltip['description_list'][4].replace('{{ e4 }}', '2')
+        e_tooltip['description_list'][5] = e_tooltip['description_list'][5].replace('br', '\n')
+        e_tooltip['description_list'][6] = e_tooltip['description_list'][6].replace('br', '\n')
+        r_tooltip['description_list'][4] = r_tooltip['description_list'][4].replace('br', '\n')
+        r_tooltip['description_list'][5] = r_tooltip['description_list'][5].replace('br', '\n')
+        r_tooltip['description_list'][6] = r_tooltip['description_list'][6].replace('{{ detonationtime }}', '2')
+        r_tooltip['description_list'][12]['magicDamage'] = r_tooltip['description_list'][12]['magicDamage'].replace('{{ smallsharkdamage }}', '150/250/350')
+        r_tooltip['description_list'][12]['magicDamage'] = r_tooltip['description_list'][12]['magicDamage'].replace('{{ bigsharkdamage }}', '300/400/500')
 
-
-
-
-
-
-        
 
 
     champ_data = {

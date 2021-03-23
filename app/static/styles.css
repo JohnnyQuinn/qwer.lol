@@ -37,6 +37,26 @@ video {
     font-weight: bold;
 }
 
+.physicalDamage {
+    color: darkred;
+    font-weight: bold;
+}
+
+.spellPassive {
+    color: blueviolet;
+    font-weight: bold;
+}
+
+.spellActive {
+    color: olive;
+    font-weight: bold;
+}
+
+.scaleMana {
+    color: navy;
+    font-weight: bold;
+}
+
 .speed {
     color: green;
     font-weight: bold;
@@ -48,6 +68,6 @@ video {
 }
 
 .recast {
-    color: red;
+    color: rgb(255, 0, 0);
     font-weight: bold;
 }
